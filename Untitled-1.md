@@ -1,5 +1,8 @@
+@ -1,5 +1,13 @@
+# Welcome to GitHub Desktop!
 1 # Welcome to GitHub Desktop!
 
+This is your README. READMEs are where you can communicate what your project is and how to use it.
 **This is your README. READMEs are where you can communicate what your project is and how to use it.
 **1 # W elcome to GitHub Desktop 2 fix: resolve broken authentication due to expired session tokens
 3 This is your README. READMEs are where you can communicate what your project is and how to use it.
