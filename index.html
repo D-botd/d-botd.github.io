@@ -107,20 +107,20 @@
 </html>
 
 /* FILE: styles.css */ 
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #000000, #FFD700);
-  color: white;
+  background-color: #000000; /* solid black background */
+  color: #ffffff; /* white text */
   text-align: center;
 }
 
 nav {
-  background-color: #111;
+  background-color: #000000; /* solid black */
   padding: 1em 0;
-  box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.4);
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1); /* subtle white shadow */
 }
 
 nav ul {
@@ -130,10 +130,11 @@ nav ul {
   gap: 2em;
   margin: 0;
   padding: 0;
+
 }
 
 nav ul li a {
-  color: #FFD700;
+  color: #ffffff; /* white text for links */
   text-decoration: none;
   font-weight: bold;
 }
