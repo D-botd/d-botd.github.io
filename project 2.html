@@ -1,0 +1,783 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+import type React from "react"
+import "./globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import Navbar from "@/components/navbar"
+import { Toaster } from "@/components/ui/toaster"
+
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "D-botd | Portfolio",
+  description: "BBIT student passionate about technology, design, and web development",
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <Navbar />
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+import Image from "next/image"
+import { Github, Mail } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import ProjectCard from "@/components/project-card"
+import ContactForm from "@/components/contact-form"
+
+export default function Home() {
+  return (
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="relative h-[90vh] flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800 text-white"
+      >
+        <div className="container px-4 md:px-6 text-center">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/abstract-digital-pattern.png')] bg-cover bg-center opacity-10"></div>
+          </div>
+          <div className="relative z-10 space-y-4">
+            <div className="mx-auto rounded-full overflow-hidden w-32 h-32 mb-6 border-4 border-white/20">
+              <Image src="/professional-portrait.png" alt="Profile" width={128} height={128} className="object-cover" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">Hello, I'm D-botd!</h1>
+            <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto">
+              BBIT student passionate about technology, design, and web development
+            </p>
+            <div className="flex justify-center gap-4 mt-8">
+              <Button asChild variant="outline" className="rounded-full bg-white/10 hover:bg-white/20 border-white/20">
+                <a href="https://github.com/D-botd" target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-5 w-5" />
+                  GitHub
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="rounded-full bg-white/10 hover:bg-white/20 border-white/20">
+                <a href="#contact">
+                  <Mail className="mr-2 h-5 w-5" />
+                  Contact Me
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <a href="#about" className="text-white/70 hover:text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-8 w-8"
+            >
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="container px-4 md:px-6 mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Hi, I'm D-bot! I'm a BBIT student passionate about technology, design, and creativity. I enjoy building
+                clean, user-friendly websites and learning new skills in web development, GitHub, and software tools.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Currently exploring HTML, CSS, Git, and version control. Always open to learning and collaborating on
+                exciting projects!
+              </p>
+              <div className="pt-4">
+                <h3 className="text-xl font-semibold mb-3">Things I'm working on:</h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Personal website & portfolio</li>
+                  <li>Beginner-friendly coding projects</li>
+                  <li>Building my GitHub presence</li>
+                </ul>
+              </div>
+            </div>
+            <div className="bg-slate-100 p-8 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">My Skills</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="font-medium">HTML</span>
+                    <span>70%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-slate-600 h-2 rounded-full" style={{ width: "70%" }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="font-medium">CSS</span>
+                    <span>60%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-slate-600 h-2 rounded-full" style={{ width: "60%" }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="font-medium">GitHub</span>
+                    <span>50%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-slate-600 h-2 rounded-full" style={{ width: "50%" }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="font-medium">Version Control</span>
+                    <span>45%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-slate-600 h-2 rounded-full" style={{ width: "45%" }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-slate-50">
+        <div className="container px-4 md:px-6 mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Projects</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ProjectCard
+              title="Portfolio Website"
+              description="My personal portfolio website built with Next.js and Tailwind CSS."
+              image="/website-portfolio.png"
+              tags={["Next.js", "Tailwind CSS", "React"]}
+              githubUrl="https://github.com/D-botd/portfolio"
+            />
+            <ProjectCard
+              title="GitHub Learning Project"
+              description="A repository documenting my journey learning Git and GitHub workflows."
+              image="/github-repository.png"
+              tags={["GitHub", "Git", "Documentation"]}
+              githubUrl="https://github.com/D-botd/github-learning"
+            />
+            <ProjectCard
+              title="HTML/CSS Practice"
+              description="Collection of small web components and layouts built while learning HTML and CSS."
+              image="/html-css-code.png"
+              tags={["HTML", "CSS", "Web Design"]}
+              githubUrl="https://github.com/D-botd/html-css-practice"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-white">
+        <div className="container px-4 md:px-6 mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold">Contact Information</h3>
+              <p className="text-lg text-gray-700">
+                Feel free to reach out if you'd like to collaborate on a project, have questions, or just want to
+                connect!
+              </p>
+              <div className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-slate-600" />
+                <a href="mailto:zomarimint0@gmail.com" className="text-slate-600 hover:text-slate-900">
+                  zomarimint0@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Github className="h-5 w-5 text-slate-600" />
+                <a
+                  href="https://github.com/D-botd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-600 hover:text-slate-900"
+                >
+                  github.com/D-botd
+                </a>
+              </div>
+            </div>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h2 className="text-2xl font-bold">D-botd</h2>
+              <p className="text-slate-400 mt-2">BBIT Student & Web Developer</p>
+            </div>
+            <div className="flex space-x-4">
+              <a
+                href="https://github.com/D-botd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-slate-300"
+              >
+                <Github className="h-6 w-6" />
+                <span className="sr-only">GitHub</span>
+              </a>
+              <a href="mailto:zomarimint0@gmail.com" className="text-white hover:text-slate-300">
+                <Mail className="h-6 w-6" />
+                <span className="sr-only">Email</span>
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
+            <p>&copy; {new Date().getFullYear()} D-botd. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  )
+}
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/hooks/use-toast"
+
+export default function ContactForm() {
+  const { toast } = useToast()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+
+    toast({
+      title: "Message sent!",
+      description: "Thank you for reaching out. I'll get back to you soon.",
+    })
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    })
+    setIsSubmitting(false)
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          Name
+        </label>
+        <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required />
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          Email
+        </label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="your.email@example.com"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          Message
+        </label>
+        <Textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Your message..."
+          rows={5}
+          required
+        />
+      </div>
+      <Button type="submit" className="w-full bg-slate-800 hover:bg-slate-700" disabled={isSubmitting}>
+        {isSubmitting ? "Sending..." : "Send Message"}
+      </Button>
+    </form>
+  )
+}
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const navLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About Me" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ]
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/90 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0">
+            <Link href="/" className={`text-xl font-bold ${isScrolled ? "text-slate-900" : "text-white"}`}>
+              D-botd
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
+            <ul className="flex space-x-8">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`font-medium transition-colors ${
+                      isScrolled ? "text-slate-700 hover:text-slate-900" : "text-white/80 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMenu}
+              className={isScrolled ? "text-slate-900" : "text-white"}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 rounded-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  )
+}
+import Image from "next/image"
+import { Github, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+interface ProjectCardProps {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  githubUrl: string
+  liveUrl?: string
+}
+
+export default function ProjectCard({ title, description, image, tags, githubUrl, liveUrl }: ProjectCardProps) {
+  return (
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <CardHeader>
+        <h3 className="text-xl font-bold">{title}</h3>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-800 hover:bg-slate-200">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        <Button asChild variant="outline" size="sm">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" />
+            GitHub
+          </a>
+        </Button>
+        {liveUrl && (
+          <Button asChild variant="outline" size="sm">
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Live Demo
+            </a>
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
+  )
+}
+import Image from "next/image"
+import { Github, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+interface ProjectCardProps {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  githubUrl: string
+  liveUrl?: string
+}
+
+export default function ProjectCard({ title, description, image, tags, githubUrl, liveUrl }: ProjectCardProps) {
+  return (
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <CardHeader>
+        <h3 className="text-xl font-bold">{title}</h3>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-800 hover:bg-slate-200">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        <Button asChild variant="outline" size="sm">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" />
+            GitHub
+          </a>
+        </Button>
+        {liveUrl && (
+          <Button asChild variant="outline" size="sm">
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Live Demo
+            </a>
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
+  )
+}
+import Image from "next/image"
+import { Github, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+interface ProjectCardProps {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  githubUrl: string
+  liveUrl?: string
+}
+
+export default function ProjectCard({ title, description, image, tags, githubUrl, liveUrl }: ProjectCardProps) {
+  return (
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <CardHeader>
+        <h3 className="text-xl font-bold">{title}</h3>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-800 hover:bg-slate-200">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        <Button asChild variant="outline" size="sm">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" />
+            GitHub
+          </a>
+        </Button>
+        {liveUrl && (
+          <Button asChild variant="outline" size="sm">
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Live Demo
+            </a>
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
+  )
+}
+import type { Config } from "tailwindcss"
+
+const config = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
+
+export default config
