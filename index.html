@@ -18,9 +18,54 @@
       text-decoration: none;
       color: blue;
     }
+    nav {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
   </style>
 </head>
+  <section id="about">
+  <h2>About Me</h2>
+  <p>This is where you can write a short bio.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <p>List or describe some projects here.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: zomarimint0@gmail.com</p>
+</section>
 <body>
+  <nav>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About Me</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
   <h1>Hello, I'm [Fiona]!</h1>
   <p>Welcome to my first website hosted with GitHub.</p>
   <p>I’m currently learning GitHub, HTML, and more!</p>
