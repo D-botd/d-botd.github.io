@@ -7,36 +7,100 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f0f0f0;
+      margin: 0;
+      background-color: #000;
+      color: #FFD700;
     }
-    h1 {
-      color: #333;
-    }
-    a {
-      text-decoration: none;
-      color: blue;
-    }
+    
     nav {
-  background-color: #333;
-  padding: 10px 0;
+  background-color: #111;
+  padding: 15px 0;
+  box-shadow: 0 0 15px #FFD700;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   margin: 0;
   padding: 0;
 }
 
 nav ul li a {
-  color: white;
+  color: #FFD700;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1rem;
 }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    header, .content {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 0 10px #FFD700;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+ <header>
+    <h1>Hello, I'm D-botd!</h1>
+    <p>Welcome to my classy portfolio hosted on GitHub.</p>
+    <p>Exploring HTML, CSS, GitHub, and beyond.</p>
+    <p><a href="https://github.com/D-botd" target="_blank" style="color:#fff;">Visit my GitHub</a></p>
+  </header>
+
+  <footer>
+    <p>&copy; 2025 D-botd. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 nav ul li a:hover {
   text-decoration: underline;
